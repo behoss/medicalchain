@@ -25,7 +25,7 @@ export const PatientsView = () => {
         setSelectedPatient("");
       }, 300);
     } else {
-      setToggleDetails("col s6");
+      setToggleDetails("col s6 popin");
       setSelectedPatient(patientId);
     }
   };
