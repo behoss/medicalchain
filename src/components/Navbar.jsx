@@ -16,10 +16,15 @@ export const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <NavLink to="/patients">{`Patients (${patientsList.length})`}</NavLink>
+            <NavLink
+              to="/patients"
+              activeClassName="nav-active"
+            >{`Patients (${patientsList.length})`}</NavLink>
           </li>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/about" activeClassName="nav-active">
+              About
+            </NavLink>
           </li>
         </ul>
       </div>
