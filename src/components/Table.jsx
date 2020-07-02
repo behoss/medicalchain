@@ -8,7 +8,7 @@ export const Table = ({ selectedPatient, children }) => {
           <tr>
             <th>Name</th>
             <th>Date of Birth</th>
-            {selectedPatient === "" ? <th>Actions</th> : null}
+            {selectedPatient === "" && <th>Actions</th>}
           </tr>
         </thead>
         <tbody>{children}</tbody>

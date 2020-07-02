@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PatientsContext } from "../contexts/PatientsProvider";
 
-export const PatientDetails = ({ patientsList, selectedPatient }) => {
+export const PatientDetails = ({ selectedPatient }) => {
+  const [patientsList] = useContext(PatientsContext);
+
   return (
     <div>
       {patientsList.map((patient) => {

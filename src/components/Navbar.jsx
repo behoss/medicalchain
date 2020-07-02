@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { PatientsContext } from "../contexts/PatientsProvider";
 
 export const Navbar = () => {
+  const [patientsList] = useContext(PatientsContext);
+
   return (
     <nav className="nav-wrapper blue darken-3">
       <div className="container">
@@ -13,7 +16,7 @@ export const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <NavLink to="/patients">Patients</NavLink>
+            <NavLink to="/patients">{`Patients (${patientsList.length})`}</NavLink>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>

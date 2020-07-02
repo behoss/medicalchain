@@ -1,5 +1,5 @@
 import React from "react";
-import { DateTime } from "./DateTime";
+import { DateTime } from "../components/DateTime";
 
 export const Home = () => {
   return (

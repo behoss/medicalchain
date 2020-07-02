@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { TableItem } from "./TableItem";
-import { Table } from "./Table";
-import { PatientDetails } from "./PatientDetails";
+import React, { useState } from "react";
+import { TableItem } from "../components/TableItem";
+import { Table } from "../components/Table";
+import { PatientDetails } from "../components/PatientDetails";
 
 export const PatientsView = () => {
-  const [patientsList, setPatientsList] = useState([]);
+  console.info("render -> PatientsView");
   const [selectedPatient, setSelectedPatient] = useState("");
   const [toggleDetails, setToggleDetails] = useState("");
-
-  const DATA_URL = "https://api.jsonbin.io/b/5efb21e87f16b71d48a8924c";
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(DATA_URL);
-      const data = await response.json();
-      setPatientsList(data);
-    })();
-  }, []);
 
   const handleClick = (patientId) => {
     if (patientId === selectedPatient) {
@@ -37,16 +27,12 @@ export const PatientsView = () => {
         <Table selectedPatient={selectedPatient}>
           <TableItem
             selectedPatient={selectedPatient}
-            patientsList={patientsList}
             handleClick={handleClick}
           />
         </Table>
       </div>
       <div className={toggleDetails}>
-        <PatientDetails
-          patientsList={patientsList}
-          selectedPatient={selectedPatient}
-        />
+        <PatientDetails selectedPatient={selectedPatient} />
       </div>
     </div>
   );
