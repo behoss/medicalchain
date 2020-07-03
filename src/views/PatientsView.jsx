@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { TableItem } from "../components/TableItem";
 import { Table } from "../components/Table";
 import { PatientDetails } from "../components/PatientDetails";
@@ -17,16 +17,18 @@ export const PatientsView = () => {
   };
 
   return (
-    <div className="row">
+    <div className="table-wrapper">
       <h2>Patients</h2>
       <motion.div
-        initial={{ opacity: 0, y: "10vw" }}
+        initial={{ opacity: 0, width: "100%" }}
         animate={{
           opacity: 1,
-          y: 0,
           width: selectedPatient !== "" ? "50%" : "100%",
+          transition: {
+            duration: 0.3,
+          },
         }}
-        className={selectedPatient !== "" ? "col s6 table" : "col s12 table"}
+        className="table"
       >
         <Table selectedPatient={selectedPatient}>
           <TableItem
@@ -35,17 +37,29 @@ export const PatientsView = () => {
           />
         </Table>
       </motion.div>
-      {selectedPatient !== "" && (
-        <motion.div
-          initial={{ opacity: 0, x: "10vw" }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "10vw" }}
-          transition={{ delay: 0.1 }}
-          className="col s5 table"
-        >
-          <PatientDetails selectedPatient={selectedPatient} />
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {selectedPatient !== "" && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: "10vw",
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                delay: 0.2,
+              },
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            className="table-details"
+          >
+            <PatientDetails selectedPatient={selectedPatient} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

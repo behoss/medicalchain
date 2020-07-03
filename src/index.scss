@@ -6,8 +6,18 @@ tr {
   background-color: #0d4a8f;
 }
 
+.table-wrapper {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .table {
+  float: left;
+  padding: 0 0.75rem;
+}
+
+.table-details {
   display: inline-block;
-  vertical-align: top;
-  padding: 0.5rem;
+  padding: 0 0.75rem;
+  width: 50%;
 }
