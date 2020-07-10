@@ -2,20 +2,28 @@ import React from "react";
 import { motion } from "framer-motion";
 import { DateTime } from "../components/DateTime";
 
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
 export const Home = () => {
   return (
-    <div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <h2>Home</h2>
-      <motion.div
-        initial={{ opacity: 0, y: "-5vw", scale: 0.9 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-        }}
-      >
-        <DateTime />
-      </motion.div>
-    </div>
+      <DateTime />
+    </motion.div>
   );
 };

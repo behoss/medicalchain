@@ -4,6 +4,18 @@ import { TableItem } from "../components/TableItem";
 import { Table } from "../components/Table";
 import { PatientDetails } from "../components/PatientDetails";
 
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
 export const PatientsView = () => {
   console.info("render -> PatientsView");
   const [selectedPatient, setSelectedPatient] = useState("");
@@ -17,12 +29,19 @@ export const PatientsView = () => {
   };
 
   return (
-    <div className="table-wrapper">
+    <motion.div
+      className="table-wrapper"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <h2>Patients</h2>
+
+      {/* TABLE */}
       <motion.div
-        initial={{ opacity: 0, width: "100%" }}
+        initial={{ width: "100%" }}
         animate={{
-          opacity: 1,
           width: selectedPatient !== "" ? "50%" : "100%",
           transition: {
             duration: 0.3,
@@ -37,6 +56,8 @@ export const PatientsView = () => {
           />
         </Table>
       </motion.div>
+
+      {/* DETAILS PANE */}
       <AnimatePresence>
         {selectedPatient !== "" && (
           <motion.div
@@ -60,6 +81,6 @@ export const PatientsView = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };

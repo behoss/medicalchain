@@ -1,8 +1,26 @@
 import React from "react";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
 export const About = () => {
   return (
-    <div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <h2>About</h2>
       <div className="row">
         <div className="col s6">
@@ -29,6 +47,6 @@ export const About = () => {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
